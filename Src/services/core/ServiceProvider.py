@@ -11,6 +11,7 @@
 from Src.repository.core.RepositoryProvider import RepositoryProvider
 from Src.services.Manager.AuthorizationManager import AuthorizationManager
 from Src.services.SignupUserService import SignupUserService
+from Src.services.LoginUserService import LoginUserService
 
 
 class ServiceProvider:
@@ -23,7 +24,10 @@ class ServiceProvider:
 
     def make_signup_user_service(self):
         return SignupUserService(self.repository_provider.make_user_profile(),  self.auth)
-    #
+
+    def make_login_user_service(self):
+        return LoginUserService(self.repository_provider.make_user_profile(), self.auth)
+
     # def make_get_suggestions_service(self):
     #     return SuggestionService(self.repository_provider.submit_orders(), self.repository_provider.make_user_follows(),
     #                              self.repository_provider.make_user_profile(), self.auth)

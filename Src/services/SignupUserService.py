@@ -19,7 +19,7 @@ class SignupUserService:
     def sign_up_user(self, json: str) -> str:
 
         if re.search(self.regex, json['email']):
-            record = self.repository.find_record_by_email(json['email'])
+            record = self.repository.find_record_by_email_signup(json['email'])
             print(record)
             if record.count() == 0:
                 if json['password'] == json['confirm_password']:

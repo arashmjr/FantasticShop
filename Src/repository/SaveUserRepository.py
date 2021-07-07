@@ -19,6 +19,9 @@ class SaveUserRepository:
         return result
 
     def find_record_by_email(self, email: str):
+        return self.collection.objects.get(email=email)
+
+    def find_record_by_email_signup(self, email: str):
         return self.collection.objects.filter(email=email)
 
     def get_all(self):

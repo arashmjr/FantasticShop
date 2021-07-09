@@ -1,23 +1,20 @@
 from Src.repository.SaveUserRepository import SaveUserRepository
+from Src.repository.ProductRepository import ProductRepository
 from Src.repository.core.CoreDatabase import CoreDatabase
-from Src.Domain.Entities.User import User
+from Src.Domain.Entities import User, Product
 
 
 class RepositoryProvider:
     database = CoreDatabase.get_instance()
 
-    # def make_authorization(self):
-    #     collection = self.database.user_db["verification"]
-    #     return VerificationRepository(collection)
-
     def make_user_profile(self):
         collection = User
         return SaveUserRepository(collection)
-    #
-    # # def make_suggestions(self):
-    # #     collection = self.database.user_db["orders"]
-    # #     return SuggestionRepository(collection)
-    #
+
+    def make_products(self):
+        collection = Product
+        return ProductRepository(collection)
+
     # def submit_orders(self):
     #     collection = self.database.user_db["orders"]
     #     return SaveOrderRepository(collection)

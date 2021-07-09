@@ -1,2 +1,2 @@
 from .User import User
-from .JunkDomainModel import JunkDomainModel
+from .Product import Product

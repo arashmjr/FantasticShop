@@ -2,4 +2,6 @@
 # from .UserDomainModelAdmin import SaveUserRepositoryAdmin
 from .SaveUserAdmin import SaveUserAdmin
 from .AddProductAdmin import AddProductAdmin
+from .AddToShoppingCartAdmin import AddToShoppingCartAdmin
+
 

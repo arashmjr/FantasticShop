@@ -1,7 +1,8 @@
 from Src.repository.SaveUserRepository import SaveUserRepository
 from Src.repository.ProductRepository import ProductRepository
+from Src.repository.ShoppingCartRepository import ShoppingCartRepository
 from Src.repository.core.CoreDatabase import CoreDatabase
-from Src.Domain.Entities import User, Product
+from Src.Domain.Entities import User, Product, ShoppingCart
 
 
 class RepositoryProvider:
@@ -15,10 +16,10 @@ class RepositoryProvider:
         collection = Product
         return ProductRepository(collection)
 
-    # def submit_orders(self):
-    #     collection = self.database.user_db["orders"]
-    #     return SaveOrderRepository(collection)
-    #
+    def make_shoppingCart(self):
+        collection = ShoppingCart
+        return ShoppingCartRepository(collection)
+
     # def make_user_follows(self):
     #     collection = self.database.user_db["userFollow"]
     #     return UserFollowRepository(collection)

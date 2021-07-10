@@ -42,11 +42,6 @@ class ProductDomainModel:
         return list_products
 
 
-    def map_to_model(self, arr):
-        normal = map(self.asJSON, arr)
-        return normal
-
-
 
 
 

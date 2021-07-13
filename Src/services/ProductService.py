@@ -11,7 +11,7 @@ class ProductService:
 
     def add_product(self, json: str):
 
-        model = ProductDomainModel(json['product_id'], json['category_id'],
+        model = ProductDomainModel(json['category_id'],
                                    json['name'], json['thumbnail'], json['price'], json['quantity'])
 
         self.repository.insert(model)

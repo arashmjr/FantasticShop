@@ -1,10 +1,11 @@
-from Src.Domain.Entities.ShoppingCart import ShoppingCart
+from Src.Domain.Entities.Carts import Carts
 from django.contrib import admin
 
 
-class AddToShoppingCartAdmin(admin.ModelAdmin):
+class AddToCartAdmin(admin.ModelAdmin):
     list_display = ['shoppingCart_id', 'user_id','product_id', 'product_name', 'quantity',
                     'isActive', 'creation_date']
 
 
-admin.site.register(ShoppingCart, AddToShoppingCartAdmin)
+admin.site.register(Carts, AddToCartAdmin)
+

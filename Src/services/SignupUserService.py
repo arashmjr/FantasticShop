@@ -4,6 +4,7 @@ from Src.Domain.models.SaveUserDomainModel import SaveUserDomainModel
 import re
 import datetime
 import hashlib
+from Src.Domain.Entities.User import User
 
 
 class SignupUserService:
@@ -20,13 +21,12 @@ class SignupUserService:
 
         if re.search(self.regex, json['email']):
             record = self.repository.find_record_by_email_signup(json['email'])
-            print(record)
             if record.count() == 0:
                 if json['password'] == json['confirm_password']:
 
                     hashed_password = hashlib.md5(json['password'].encode('utf-8')).hexdigest()
                     # creation_date = datetime.datetime.now()
-                    model = SaveUserDomainModel(json['user_id'],
+                    model = SaveUserDomainModel(
                                                     json['name'],
                                                     json['email'],
                                                     hashed_password,
@@ -36,8 +36,11 @@ class SignupUserService:
                                                     json['phone_number']
                                                 )
                     self.repository.insert(model)
-                    user_id = model.user_id
-                    token = self.auth.make_token_for_user_id(user_id)
+                    # user_id = model.user_id
+                    item = self.repository.find_record_by_email(json['email'])
+                    print(item.user_id)
+
+                    token = self.auth.make_token_for_user_id(item.user_id)
                     token_utf = token.decode('utf-8')
                     return token_utf
 

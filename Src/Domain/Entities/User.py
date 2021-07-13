@@ -1,13 +1,14 @@
 from django.db import models
 from django.contrib import admin
+from .Carts import Carts
 
 
 class User(models.Model):
-    user_id = models.BigIntegerField(blank=False)
+    user_id = models.BigAutoField(blank=False, primary_key=True)
+    Cart_id: models.OneToOneField(Carts, unique=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=40, blank=False, null=False)
     email = models.EmailField(max_length=254, blank=False)
     password = models.CharField(max_length=50, blank=False)
-    # creation_date = models.DateTimeField(auto_now=False, auto_now_add=False)
     access_level = models.IntegerField(blank=False)
     address = models.TextField()
     postal_code = models.BigIntegerField(blank=False)

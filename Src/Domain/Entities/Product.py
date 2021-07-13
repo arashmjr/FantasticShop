@@ -3,7 +3,7 @@ from django.contrib import admin
 
 
 class Product(models.Model):
-    product_id = models.BigIntegerField(blank=False)
+    product_id = models.BigAutoField(primary_key=True)
     category_id = models.BigIntegerField(blank=False)
     name = models.CharField(max_length=40, blank=False, null=False)
     thumbnail = models.CharField(max_length=50, blank=False)

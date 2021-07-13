@@ -3,7 +3,7 @@ from Src.services.Manager.AuthorizationManager import AuthorizationManager
 from Src.services.SignupUserService import SignupUserService
 from Src.services.LoginUserService import LoginUserService
 from Src.services.ProductService import ProductService
-from Src.services.ShoppingCartService import ShoppingCartService
+from Src.services.CartService import CartService
 
 
 
@@ -24,8 +24,9 @@ class ServiceProvider:
     def make_product_service(self):
         return ProductService(self.repository_provider.make_products())
 
-    def make_shopping_cart_service(self):
-        return ShoppingCartService(self.repository_provider.make_shoppingCart())
+    def make_cart_service(self):
+        return CartService(self.repository_provider.make_Cart(),
+                           self.repository_provider.make_products())
 
 
 

@@ -8,7 +8,10 @@ class Product(models.Model):
     name = models.CharField(max_length=40, blank=False, null=False)
     thumbnail = models.CharField(max_length=50, blank=False)
     price = models.BigIntegerField(blank=False)
-    quantity = models.IntegerField(blank=False)
+    url_photo = models.CharField(blank=False, max_length=100)
+    quantity = models.BigIntegerField(blank=False)
+
+
 
 
 

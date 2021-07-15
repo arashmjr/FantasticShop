@@ -1,20 +1,21 @@
 
 class ProductDomainModel:
-    # product_id: int
+
     category_id: int
     name: str
     thumbnail: str
     price: int
+    usl_photo: str
     quantity: int
 
     def __init__(self, category_id: int, name: str, thumbnail: str
-                 ,price: int, quantity: int):
+                 ,price: int, url_photo: int, quantity: int):
 
-        # self.product_id = product_id
         self.category_id = category_id
         self.name = name
         self.thumbnail = thumbnail
         self.price = price
+        self.url_photo = url_photo
         self.quantity = quantity
 
     def to_dict(self):
@@ -23,6 +24,7 @@ class ProductDomainModel:
                 "name": self.name,
                 "thumbnail": self.thumbnail,
                 "price": self.price,
+                "url_photo": self.url_photo,
                 "quantity": self.quantity
                 }
 
@@ -36,7 +38,7 @@ class ProductDomainModel:
                 'name': item.name,
                 'thumbnail': item.thumbnail,
                 'price': item.price,
-                'quantity': item.quantity
+                'url_photo': item.url_photo
             }
             list_products.append(result)
         return list_products

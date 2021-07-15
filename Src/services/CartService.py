@@ -1,26 +1,43 @@
 from Src.repository.CartRepository import CartRepository
-from Src.repository.ProductRepository import ProductRepository
 from Src.Domain.models.CartDomainModel import CartDomainModel
+from Src.repository.CartProductRepository import CartProductRepository
+from Src.repository.ProductRepository import ProductRepository
+from Src.services.Manager.AuthorizationManager import AuthorizationManager
+from Src.Domain.models.CartProductDomainModel import CartProductDomainModel
+from urllib.request import Request
 import datetime
 
 
 class CartService:
     repository_cart: CartRepository
     repository_product: ProductRepository
+    repository_cart_product: CartProductRepository
+    auth: AuthorizationManager
 
-    def __init__(self, repository_cart: CartRepository, repository_product: ProductRepository):
+    def __init__(self, repository_cart: CartRepository, repository_product: ProductRepository,
+                 repository_cart_product: CartProductRepository, auth: AuthorizationManager):
 
         self.repository_cart = repository_cart
         self.repository_product = repository_product
+        self.repository_cart_product = repository_cart_product
+        self.auth = auth
 
-    def add_item(self, json: str):
+    def add_item(self, json: str, request: Request):
+
+        # get user_id from token
+        user_id = self.auth.extract_user_id(request)
+
+        # get cart_id from cart model
+        item = self.repository_cart.find_record_by_user_id(user_id)
+        cart_id = item.cart_id
 
         creation_date = datetime.datetime.now()
-        model = CartDomainModel(json['user_id'],
-                                json['product_id'], json['product_name'], json['quantity'],
-                                json['isActive'], creation_date)
+        model = CartProductDomainModel(json['product_id'], cart_id, user_id, creation_date,
+                                            json['quantity'], -1)
 
-        self.repository_cart.insert(model)
+        self.repository_cart_product.insert(model)
+
+        # update quantity of item in product table
         self.repository_product.update_record_by_product_id(model.product_id)
 
         # item = self.repository_product.find_record_by_product_id(model.product_id)
@@ -28,13 +45,13 @@ class CartService:
 
         return True
 
-    def get_items(self):
+    def get_carts(self):
         products = self.repository_cart.get_all()
         list_product = CartDomainModel.asJSON(products)
         return list_product
 
     def remove_item(self, json):
-        self.repository_cart.remove_record(json['shoppingCart_id'])
+        self.repository_cart.remove_record(json['cart_id'])
         return True
 
 

@@ -13,7 +13,7 @@ class CartRepository:
         return result
 
     def find_record_by_user_id(self, user_id: int):
-        result = self.collection.objects.filter(user_id=user_id)
+        result = self.collection.objects.get(user_id=user_id)
         return result
 
     def find_record_by_email(self, email: str):
@@ -23,15 +23,11 @@ class CartRepository:
         return self.collection.objects.filter(email=email)
 
     def get_all(self):
-        arr = []
         items = self.collection.objects.filter()
-        print(items)
-        for item in items:
-            arr.append(item)
-        return arr
+        return items
 
-    def remove_record(self, shoppingcart_id:  int):
-        return self.collection.objects.filter(shoppingCart_id=shoppingcart_id).delete()
+    def remove_record(self, cart_id:  int):
+        return self.collection.objects.filter(cart_id=cart_id).delete()
 
     def remove_all(self):
         delete_all = self.collection.objects.all().delete()

@@ -16,7 +16,8 @@ class ServiceProvider:
         self.auth = AuthorizationManager()
 
     def make_signup_user_service(self):
-        return SignupUserService(self.repository_provider.make_user_profile(),  self.auth)
+        return SignupUserService(self.repository_provider.make_user_profile(),
+                                 self.repository_provider.make_Cart(), self.auth)
 
     def make_login_user_service(self):
         return LoginUserService(self.repository_provider.make_user_profile(), self.auth)
@@ -26,7 +27,9 @@ class ServiceProvider:
 
     def make_cart_service(self):
         return CartService(self.repository_provider.make_Cart(),
-                           self.repository_provider.make_products())
+                           self.repository_provider.make_products(),
+                           self.repository_provider.make_cart_product(),
+                           self.auth)
 
 
 

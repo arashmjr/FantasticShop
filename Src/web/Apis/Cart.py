@@ -15,9 +15,10 @@ class Cart:
     @csrf_exempt
     def add_item(self, request):
         json_data = json.loads(request.body)
+
         try:
             service = ServiceProvider().make_cart_service()
-            result = service.add_item(json_data)
+            service.add_item(json_data, request)
             response = BaseResponse({}, True, MessageIds.SUCCESS)
             return JsonResponse(response.serialize(), safe=False, status=status.HTTP_201_CREATED)
 
@@ -30,7 +31,7 @@ class Cart:
 
         try:
             service = ServiceProvider().make_cart_service()
-            products = service.get_items()
+            products = service.get_carts()
             response = BaseResponse(products, True, MessageIds.SUCCESS)
             return JsonResponse(response.serialize(), safe=False, status=status.HTTP_201_CREATED)
 

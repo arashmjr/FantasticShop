@@ -1,5 +1,7 @@
-from urllib.request import Request
+from django.core.handlers.wsgi import WSGIRequest
 
+from Src.services.Manager.AuthorizationManager import login_required
+# from django.contrib.auth.decorators import login_required
 from Src.services.core.ServiceProvider import ServiceProvider
 from Src.web.dtos.BaseResponse import BaseResponse, BaseError
 from Src.web.utils.Localizations import MessageIds
@@ -7,12 +9,12 @@ from rest_framework import status
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-import urllib.request
 
 
 class Cart:
 
     @csrf_exempt
+    @login_required
     def add_item(self, request):
         json_data = json.loads(request.body)
 
@@ -27,7 +29,8 @@ class Cart:
             return JsonResponse(response.serialize(), status=status.HTTP_400_BAD_REQUEST)
 
     @csrf_exempt
-    def get_items(self, request):
+    @login_required
+    def get_items(self, request: WSGIRequest):
 
         try:
             service = ServiceProvider().make_cart_service()
@@ -40,6 +43,7 @@ class Cart:
             return JsonResponse(response.serialize(), status=status.HTTP_400_BAD_REQUEST)
 
     @csrf_exempt
+    @login_required
     def remove_item(self, request):
         json_data = json.loads(request.body)
 

@@ -10,7 +10,7 @@ import json
 @csrf_exempt
 def sign_up_user(request):
     json_data = json.loads(request.body)
-    # json_data = request.POST.get()
+
     try:
         service = ServiceProvider().make_signup_user_service()
         token = service.sign_up_user(json_data)

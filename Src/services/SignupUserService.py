@@ -1,8 +1,8 @@
-from Src.services.Manager.AuthorizationManager import AuthorizationManager
 from Src.repository.SaveUserRepository import SaveUserRepository
 from Src.repository.CartRepository import CartRepository
 from Src.Domain.models.SaveUserDomainModel import SaveUserDomainModel
 from Src.Domain.models.CartDomainModel import CartDomainModel
+from Src.services.Manager.AuthorizationManager import make_token_for_user_id
 import re
 import datetime
 import hashlib
@@ -11,16 +11,13 @@ import hashlib
 class SignupUserService:
     repository_user: SaveUserRepository
     repository_cart: CartRepository
-    auth: AuthorizationManager
 
     regex = '^[a-zA-Z0-9]+[\._]?[a-zA-Z0-9]+[@]\w+[.]\w{2,3}$'
 
-    def __init__(self, repository_user: SaveUserRepository, repository_cart: CartRepository,
-                 auth: AuthorizationManager):
+    def __init__(self, repository_user: SaveUserRepository, repository_cart: CartRepository):
 
         self.repository_user = repository_user
         self.repository_cart = repository_cart
-        self.auth = auth
 
     def sign_up_user(self, json: str) -> str:
 
@@ -44,7 +41,6 @@ class SignupUserService:
                     self.repository_user.insert(model)
                     item = self.repository_user.find_record_by_email(json['email'])
                     user_id = item.user_id
-                    print(item.user_id)
 
                     # creat a cart for user
                     model_cart = CartDomainModel(user_id, -1, creation_date)
@@ -52,7 +48,7 @@ class SignupUserService:
                     self.repository_cart.insert(model_cart)
 
                     # create token for user
-                    token = self.auth.make_token_for_user_id(item.user_id)
+                    token = make_token_for_user_id(item.user_id)
                     token_utf = token.decode('utf-8')
                     return token_utf
 

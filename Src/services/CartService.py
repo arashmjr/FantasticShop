@@ -2,7 +2,7 @@ from Src.repository.CartRepository import CartRepository
 from Src.Domain.models.CartDomainModel import CartDomainModel
 from Src.repository.CartProductRepository import CartProductRepository
 from Src.repository.ProductRepository import ProductRepository
-from Src.services.Manager.AuthorizationManager import AuthorizationManager
+from Src.services.Manager.AuthorizationManager import login_required, extract_user_id
 from Src.Domain.models.CartProductDomainModel import CartProductDomainModel
 from urllib.request import Request
 import datetime
@@ -12,20 +12,19 @@ class CartService:
     repository_cart: CartRepository
     repository_product: ProductRepository
     repository_cart_product: CartProductRepository
-    auth: AuthorizationManager
 
     def __init__(self, repository_cart: CartRepository, repository_product: ProductRepository,
-                 repository_cart_product: CartProductRepository, auth: AuthorizationManager):
+                 repository_cart_product: CartProductRepository):
 
         self.repository_cart = repository_cart
         self.repository_product = repository_product
         self.repository_cart_product = repository_cart_product
-        self.auth = auth
 
+    # @login_required
     def add_item(self, json: str, request: Request):
 
         # get user_id from token
-        user_id = self.auth.extract_user_id(request)
+        user_id = extract_user_id(request)
 
         # get cart_id from cart model
         item = self.repository_cart.find_record_by_user_id(user_id)

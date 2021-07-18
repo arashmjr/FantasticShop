@@ -4,7 +4,7 @@ from Src.repository.CartProductRepository import CartProductRepository
 from Src.repository.ProductRepository import ProductRepository
 from Src.services.Manager.AuthorizationManager import login_required, extract_user_id
 from Src.Domain.models.CartProductDomainModel import CartProductDomainModel
-from urllib.request import Request
+from django.core.handlers.wsgi import WSGIRequest
 import datetime
 
 
@@ -20,8 +20,7 @@ class CartService:
         self.repository_product = repository_product
         self.repository_cart_product = repository_cart_product
 
-    # @login_required
-    def add_item(self, json: str, request: Request):
+    def add_item(self, json: str, request: WSGIRequest):
 
         # get user_id from token
         user_id = extract_user_id(request)

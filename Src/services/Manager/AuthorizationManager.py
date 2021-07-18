@@ -1,3 +1,4 @@
+from django.core.exceptions import PermissionDenied
 from django.core.handlers.wsgi import WSGIRequest
 from Src.config.config import api_secret
 from datetime import datetime, timedelta
@@ -51,4 +52,18 @@ def login_required(func):
         return func(*args, **kws)
 
     return decorated_function
-#
+
+
+def superuser_only(func):
+    @wraps(func)
+    def decorated_function(*args, **kws):
+
+        request: WSGIRequest = args[1]
+        # print(request.user)
+        if not request.user.is_superuser:
+            raise PermissionDenied
+
+        return func(*args, **kws)
+
+    return decorated_function
+

@@ -42,7 +42,7 @@ class SignupUserService:
                     item = self.repository_user.find_record_by_email(json['email'])
                     user_id = item.user_id
 
-                    # creat a cart for user
+                    # create a cart for user
                     model_cart = CartDomainModel(user_id, -1, creation_date)
                     print(model_cart.to_dict())
                     self.repository_cart.insert(model_cart)

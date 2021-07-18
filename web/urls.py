@@ -4,6 +4,7 @@ from Src.web.Apis import SignupUser
 from Src.web.Apis import LoginUser
 from Src.web.Apis.Cart import Cart
 from Src.web.Apis.Product import Product
+from Src.web.Apis.Order import Order
 from Src.services.Manager.AuthorizationManager import login_required
 
 urlpatterns = [
@@ -14,6 +15,8 @@ urlpatterns = [
     url(r'^Cart/AddItem/$', Cart().add_item),
     url(r'^Cart/GetItems/$', Cart().get_items),
     url(r'^Cart/RemoveItem/$', Cart().remove_item),
+    url(r'^checkout/$', Order().checkout),
 
 ]
+
 

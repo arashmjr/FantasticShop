@@ -2,8 +2,9 @@ from Src.repository.SaveUserRepository import SaveUserRepository
 from Src.repository.ProductRepository import ProductRepository
 from Src.repository.CartRepository import CartRepository
 from Src.repository.CartProductRepository import CartProductRepository
+from Src.repository.OrderRepository import OrderRepository
 from Src.repository.core.CoreDatabase import CoreDatabase
-from Src.Domain.Entities import User, Product, Carts, CartProducts
+from Src.Domain.Entities import User, Product, Carts, CartProducts, Order
 
 
 class RepositoryProvider:
@@ -25,6 +26,7 @@ class RepositoryProvider:
         collection = CartProducts
         return CartProductRepository(collection)
 
-    # def make_packages(self):
-    #     collection = self.database.user_db["packages"]
-    #     return PackagesRepository(collection)
+    def submit_order(self):
+        collection = Order
+        return OrderRepository(collection)
+    

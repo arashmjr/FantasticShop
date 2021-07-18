@@ -1,7 +1,5 @@
 from django.core.handlers.wsgi import WSGIRequest
-
-from Src.services.Manager.AuthorizationManager import login_required
-# from django.contrib.auth.decorators import login_required
+from Src.services.Manager.AuthorizationManager import login_required, superuser_only
 from Src.services.core.ServiceProvider import ServiceProvider
 from Src.web.dtos.BaseResponse import BaseResponse, BaseError
 from Src.web.utils.Localizations import MessageIds

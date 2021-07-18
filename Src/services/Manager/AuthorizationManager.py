@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 import jwt
 from functools import wraps
 from django.http import HttpResponseForbidden, HttpResponseServerError
+from django.contrib.auth.models import User
 
 
 def make_token_for_user_id(user_id: str) -> str:
@@ -59,11 +60,12 @@ def superuser_only(func):
     def decorated_function(*args, **kws):
 
         request: WSGIRequest = args[1]
-        # print(request.user)
+
         if not request.user.is_superuser:
             raise PermissionDenied
 
         return func(*args, **kws)
 
     return decorated_function
+
 

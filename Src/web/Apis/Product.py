@@ -4,12 +4,13 @@ from Src.web.utils.Localizations import MessageIds
 from rest_framework import status
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from Src.services.Manager.AuthorizationManager import superuser_only
+from Src.services.Manager.AuthorizationManager import login_required, superuser_only
 import json
 
 
 class Product:
     @csrf_exempt
+    @superuser_only
     def add_product(self, request):
         json_data = json.loads(request.body)
         try:

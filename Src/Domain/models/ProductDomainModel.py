@@ -3,17 +3,17 @@ class ProductDomainModel:
 
     category_id: int
     name: str
-    thumbnail: str
+    desc: str
     price: int
     usl_photo: str
     quantity: int
 
-    def __init__(self, category_id: int, name: str, thumbnail: str
+    def __init__(self, category_id: int, name: str, desc: str
                  ,price: int, url_photo: int, quantity: int):
 
         self.category_id = category_id
         self.name = name
-        self.thumbnail = thumbnail
+        self.desc = desc
         self.price = price
         self.url_photo = url_photo
         self.quantity = quantity
@@ -22,7 +22,7 @@ class ProductDomainModel:
         return {
                 "category_id": self.category_id,
                 "name": self.name,
-                "thumbnail": self.thumbnail,
+                "desc": self.desc,
                 "price": self.price,
                 "url_photo": self.url_photo,
                 "quantity": self.quantity
@@ -36,7 +36,7 @@ class ProductDomainModel:
 
                 'category_id': item.category_id,
                 'name': item.name,
-                'thumbnail': item.thumbnail,
+                'desc': item.desc,
                 'price': item.price,
                 'url_photo': item.url_photo
             }

@@ -46,3 +46,16 @@ class OrderRepository:
             item.quantity = item.quantity - 1
             item.save()
         return
+
+class Query:
+
+    queryString: str
+    def __init__(self):
+        self.queryString = ""
+
+    def where(self, input: str):
+        self.queryString = self.queryString + input
+        return self
+
+
+query = Query().where("Status == 4").where("userId == 342347234").queryString

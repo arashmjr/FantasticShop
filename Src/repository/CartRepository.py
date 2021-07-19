@@ -36,8 +36,8 @@ class CartRepository:
         delete_all = self.collection.objects.all().delete()
         return delete_all
 
-    def update_record_by_cart_id(self, cart_id: int):
+    def checkout_by_cart_id(self, cart_id: int):
         item = self.collection.objects.get(cart_id=cart_id)
-        item.quantity = item.order_status = 0
+        item.order_status = 0
         item.save()
         return

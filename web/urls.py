@@ -1,15 +1,17 @@
 from django.conf.urls import url
 from . import views
-from Src.web.Apis import SignupUser
-from Src.web.Apis import LoginUser
-from Src.web.Apis.Cart import Cart
-from Src.web.Apis.Product import Product
-from Src.web.Apis.Order import Order
-from Src.services.Manager.AuthorizationManager import login_required
+from Src.web.apis import SignupUser
+from Src.web.apis import LoginUser
+from Src.web.apis import AdminAuth
+from Src.web.apis.Cart import Cart
+from Src.web.apis.Product import Product
+from Src.web.apis.Order import Order
 
 urlpatterns = [
     url(r'^SignupUser/$', SignupUser.sign_up_user),
     url(r'^LoginUser/$', LoginUser.login_user),
+    url(r'^SignupAdmin/$', AdminAuth.sign_up_admin),
+    url(r'^LoginAdmin/$', AdminAuth.login_admin),
     url(r'^AddProduct/$', Product().add_product),
     url(r'^GetProducts/$', Product().get_products),
     url(r'^Cart/AddItem/$', Cart().add_item),

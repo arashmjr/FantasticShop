@@ -1,10 +1,10 @@
 from Src.repository.core.RepositoryProvider import RepositoryProvider
-from Src.services.Manager.AuthorizationManager import login_required
-from Src.services.SignupUserService import SignupUserService
-from Src.services.LoginUserService import LoginUserService
+from Src.services.auth.SignupUserService import SignupUserService
+from Src.services.auth.LoginUserService import LoginUserService
 from Src.services.ProductService import ProductService
 from Src.services.CartService import CartService
 from Src.services.OrderService import OrderService
+from Src.services.auth.AuthAdminService import AuthAdminService
 
 
 class ServiceProvider:
@@ -17,8 +17,16 @@ class ServiceProvider:
         return SignupUserService(self.repository_provider.make_user_profile(),
                                  self.repository_provider.make_Cart())
 
+    def make_signup_admin_service(self):
+        return AuthAdminService(self.repository_provider.make_admin_profile(),
+                                self.repository_provider.make_Cart())
+
     def make_login_user_service(self):
         return LoginUserService(self.repository_provider.make_user_profile())
+
+    def make_login_admin_service(self):
+        return AuthAdminService(self.repository_provider.make_admin_profile(),
+                                self.repository_provider.make_Cart())
 
     def make_product_service(self):
         return ProductService(self.repository_provider.make_products())

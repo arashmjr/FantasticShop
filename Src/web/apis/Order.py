@@ -1,4 +1,3 @@
-from django.core.handlers.wsgi import WSGIRequest
 from Src.services.Manager.AuthorizationManager import login_required
 from Src.services.core.ServiceProvider import ServiceProvider
 from Src.web.dtos.BaseResponse import BaseResponse, BaseError
@@ -7,7 +6,6 @@ from rest_framework import status
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.handlers.wsgi import WSGIRequest
-import json
 
 
 class Order:

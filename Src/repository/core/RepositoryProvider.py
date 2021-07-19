@@ -3,8 +3,9 @@ from Src.repository.ProductRepository import ProductRepository
 from Src.repository.CartRepository import CartRepository
 from Src.repository.CartProductRepository import CartProductRepository
 from Src.repository.OrderRepository import OrderRepository
+from Src.repository.UserAdminRepository import UserAdminRepository
 from Src.repository.core.CoreDatabase import CoreDatabase
-from Src.Domain.Entities import User, Product, Carts, CartProducts, Order
+from Src.Domain.Entities import User, Product, Carts, CartProducts, Order, UserAdmin
 
 
 class RepositoryProvider:
@@ -29,4 +30,9 @@ class RepositoryProvider:
     def submit_order(self):
         collection = Order
         return OrderRepository(collection)
-    
+
+    def make_admin_profile(self):
+        collection = UserAdmin
+        return UserAdminRepository(collection)
+
+

@@ -29,7 +29,7 @@ class OrderService:
         self.repository_order.insert(model)
 
         # update order_status of cart
-        self.repository_cart.update_record_by_cart_id(cart_id)
+        self.repository_cart.checkout_by_cart_id(cart_id)
 
         # create new cart for user
         model_cart = CartDomainModel(user_id, -1, creation_date)

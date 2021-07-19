@@ -12,7 +12,7 @@ class ProductService:
     def add_product(self, json: str):
 
         model = ProductDomainModel(json['category_id'],
-                                   json['name'], json['thumbnail'], json['price'], json['url_photo'], json['quantity'])
+                                   json['name'], json['desc'], json['price'], json['url_photo'], json['quantity'])
 
         self.repository.insert(model)
         return True
@@ -22,3 +22,5 @@ class ProductService:
         list_product = ProductDomainModel.asJSON(products)
 
         return list_product
+
+

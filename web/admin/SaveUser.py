@@ -3,7 +3,7 @@ from django.contrib import admin
 
 
 class SaveUser(admin.ModelAdmin):
-    list_display = ['user_id','name', 'email','password', 'access_level',
+    list_display = ['user_id', 'name', 'email', 'password', 'access_level',
                     'address', 'postal_code', 'phone_number']
 
 

@@ -1,5 +1,3 @@
-# from .UserDomainModelAdmin import UserDomainModeAdmin
-# from .UserDomainModelAdmin import SaveUserRepositoryAdmin
 from .SaveUser import SaveUser
 from .SaveAdmin import SaveAdmin
 from .AddProductAdmin import AddProductAdmin

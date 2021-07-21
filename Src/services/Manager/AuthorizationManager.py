@@ -69,7 +69,7 @@ def is_admin_only(func):
         user_id = None
         encode_token = request.headers.get('Authorization')
         try:
-            decoded_token = jwt.decode(encode_token, api_secret, algorithms=['HS256'])
+            decoded_token = jwt.decode(encode_token, admin_api_secret, algorithms=['HS256'])
             if decoded_token.get("admin_id") != "":
                 return func(*args, **kws)
             return HttpResponseForbidden()

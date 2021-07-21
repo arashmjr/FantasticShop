@@ -37,7 +37,9 @@ class ServiceProvider:
                            self.repository_provider.make_cart_product())
 
     def make_order_service(self):
-        return OrderService(self.repository_provider.submit_order(), self.repository_provider.make_Cart())
+        return OrderService(self.repository_provider.submit_order(), self.repository_provider.make_Cart(),
+                            self.repository_provider.make_cart_product(),
+                            self.repository_provider.make_products())
 
 
 

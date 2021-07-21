@@ -14,7 +14,7 @@ class CartRepository:
 
     def find_record_by_user_id(self, user_id: int):
         result = self.collection.objects.filter(user_id=user_id)
-        print(result)
+        # print(result)
         for item in result:
             if item.order_status == -1:
                 return item

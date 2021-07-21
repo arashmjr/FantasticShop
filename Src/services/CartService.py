@@ -35,12 +35,6 @@ class CartService:
 
         self.repository_cart_product.insert(model)
 
-        # update quantity of item in product table
-        self.repository_product.update_record_by_product_id(model.product_id)
-
-        # item = self.repository_product.find_record_by_product_id(model.product_id)
-        # print(item.quantity)
-
         return True
 
     def get_carts(self):

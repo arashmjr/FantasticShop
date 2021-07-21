@@ -22,8 +22,8 @@ class CartProductRepository:
     def find_record_by_email(self, email: str):
         return self.collection.objects.get(email=email)
 
-    def find_record_by_email_signup(self, email: str):
-        return self.collection.objects.filter(email=email)
+    def find_records_by_cart_id(self, cart_id: int):
+        return self.collection.objects.filter(cart_id=cart_id)
 
     def get_all(self):
         arr = []
@@ -40,9 +40,3 @@ class CartProductRepository:
         delete_all = self.collection.all().delete()
         return delete_all
 
-    def update_record_by_product_id(self, product_id: int):
-        items = self.collection.objects.filter(product_id=product_id)
-        for item in items:
-            item.quantity = item.quantity - 1
-            item.save()
-        return

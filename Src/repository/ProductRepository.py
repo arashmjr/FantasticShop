@@ -40,7 +40,7 @@ class ProductRepository:
         delete_all = self.collection.all().delete()
         return delete_all
 
-    def update_record_by_product_id(self, product_id: int):
+    def update_quantity_by_product_id(self, product_id: int):
         items = self.collection.objects.filter(product_id=product_id)
         for item in items:
             item.quantity = item.quantity - 1

@@ -35,8 +35,7 @@ Create a new database using the postgresql command line.
 
 CREATE DATABASE FantasticShop
 
-Inside our django project settings.py, set the default database as the postgresql 
-and set road database the the postgis like so,
+Inside our django project settings.py, set the database as the postgresql like so,
 ```bash
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -48,7 +47,7 @@ and set road database the the postgis like so,
 
     }
 ```
-Just create models and run python manage.py makemigrations and python manage.py migrate commands, the new databases should work fine.
+Just create models and run python manage.py makemigrations and python manage.py migrate commands, the new database should work fine.
 
 ## Note 
 If you think this repo need to have new usecase feel free to add an issue or send a pull request.

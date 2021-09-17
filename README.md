@@ -8,7 +8,7 @@ cart, and finally request for checking out.
 ## How to run
 To run FantasticShop in development mode; Just use steps below:
 1. Install python3.8.0, pip, virtualenv in your system.
-3. Make development environment ready using commands below.
+2. Make development environment ready using commands below.
 
 
 ```bash
@@ -21,7 +21,7 @@ install and configuration of postgresql using the following sections
 python manage.py makemigrations 
 python manage.py migrate # Create database tables
 ```
-4. Run app using python manage.py runserver
+3. Run app using python manage.py runserver
 
 ## django_postgresql
 using postgresql database with django

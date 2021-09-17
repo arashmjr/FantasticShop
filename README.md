@@ -10,6 +10,7 @@ To run FantasticShop in development mode; Just use steps below:
 1. Install python3.8.0, pip, virtualenv in your system.
 3. Make development environment ready using commands below.
 
+
 ```bash
 git clone https://github.com/arashmjr/FantasticShop && cd FantasticShop
 virtualenv venv   # Create virtualenv named venv

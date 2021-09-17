@@ -1,2 +1,3 @@
 # api_secret
-
+api_secret: str = "UW1Wb2NtRmtLMU5oYkdGeUsxZHBiR3dyUW14dmR5dDFjQ3RaYjNWeUsyMXBibVE9"
+admin_api_secret: str = "W14dmR5dDFjQ3RaYeUsBiUW1Wb2NR3dyUNWeUsyMXBibVE2NR3dyUW14dmR5dDFjQ3"
